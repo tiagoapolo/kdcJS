@@ -1,0 +1,21 @@
+{
+  "alice": {
+    "address": "127.0.0.1",
+    "port": "8080",
+    "key": "r5u8x/A?D(G+KaPdSgVkYp3s6v9y$B&E"
+  },
+  "bob": {
+    "address": "127.0.0.1",
+    "port": "8081",
+    "key": "*G-KaPdSgVkXp2s5v8y/B?E(H+MbQeTh"
+  },
+  "kdc": {
+    "address": "127.0.0.1",
+    "port": "8082",
+    "key": "x/A?D(G+KbPdSgVkYp3s6v9y$B&E)H@M"
+  },
+  "sharedKeys": {
+    "alice": "r5u8x/A?D(G+KaPdSgVkYp3s6v9y$B&E",
+    "bob": "*G-KaPdSgVkXp2s5v8y/B?E(H+MbQeTh"
+  }
+}

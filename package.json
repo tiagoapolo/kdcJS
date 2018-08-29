@@ -1,0 +1,9 @@
+{
+  "name": "kdc",
+  "version": "0.0.1",
+  "author": "Tiago Fonseca",
+  "main": "app.js",
+  "dependencies": {
+
+  }
+}
