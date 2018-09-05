@@ -42,7 +42,7 @@ function processRequest(request) {
 
     switch (command) {
 
-        case 'talk':
+        case 'session':
 
             let src = splittedRequest[1].toString()
             let dst = splittedRequest[2].toString()
@@ -62,14 +62,15 @@ function processRequest(request) {
                     return false;
             }) ]
 
+            //splittedRequest[3]+'|'+
 
             // E( Ks | REQUEST | N1 | E( Ks | ALICE, Kb), Ka)
             return symmetric.encrypt( kdcKey+'|'+
                 splittedRequest[2]+'|'+
-                splittedRequest[3]+'|'+
                 symmetric.encrypt(kdcKey+'|'+src, dstKey), srcKey )
 
-
+        default:
+            throw "COMMAND NOT FOUND: USE SESSION|SRC|DST|PARAMS"
 
     }
 

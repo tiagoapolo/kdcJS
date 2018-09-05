@@ -8,8 +8,13 @@ var client = new net.Socket();
 var server
 var kdcResponse
 var kdcSession
+var myAddress
+var myPort
+var myKey
 
 exports.init = (address, port, key) => {
+
+    myKey = key
 
     client.on('data', function(data) {
 
@@ -18,18 +23,20 @@ exports.init = (address, port, key) => {
 
         client.destroy()
 
-        if(client.remotePort === 8082){
-
-            kdcResponse = symmetric.decrypt(data.toString(), key).split('|')
-            kdcSession = kdcResponse[0]
-            console.log('RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
-
-            let destination = kdcResponse[1]
-            sendMessage(destination.split(':')[0], destination.split(':')[1], kdcResponse[kdcResponse.length-1])
-
-        } else {
-            console.log('Received from an idiot: ', data.toString())
-        }
+        // KDC
+        // if(client.remotePort === 8082){
+        //
+        //     kdcResponse = symmetric.decrypt(data.toString(), key).split('|')
+        //     kdcSession = kdcResponse[0]
+        //
+        //     console.log('RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
+        //
+        //     let destination = kdcResponse[1]
+        //     // sendMessage(destination.split(':')[0], destination.split(':')[1], kdcResponse[kdcResponse.length-1])
+        //
+        // // } else {
+        //     console.log('Received from an idiot: ', data.toString())
+        // // }
 
 
     })
@@ -45,30 +52,57 @@ exports.init = (address, port, key) => {
         server = socket
 
         socket.on('data', (data, from) => {
-            console.log('RECEBIL ', symmetric.decrypt(data.toString(), key) )
 
-            let splittedRequest = request.split('|');
-            let command = splittedRequest[0].toLowerCase()
+            console.log('RECEBIL ', data.toString(), socket.localPort)
 
-            switch (command) {
-
-                case 'talk':
-
-                    let src = splittedRequest[1].toString()
-                    let dst = splittedRequest[2].toString()
-
-
-            }
+            processMessage(data)
 
         })
 
     }).listen(port, () => {
+
+        myAddress = address
+        myPort = port
+
         console.log('\nStarted Alice!', address+':'+port)
     })
 
 }
 
+exports.startSession = (kdcAddress, kdcPort, dstAddress, dstPort) => {
+
+    return new Promise((resolve, reject) => {
+
+        sendMessage(kdcAddress, kdcPort, `SESSION|${myAddress}:${myPort}|${dstAddress}:${dstPort}`)
+        client.once('data', (data) => {
+
+            client.destroy()
+
+            if(client.remotePort.toString() === kdcPort){
+
+                kdcResponse = symmetric.decrypt(data.toString(), myKey).split('|')
+                kdcSession = kdcResponse[0]
+
+                console.log('RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
+
+                // let destination = kdcResponse[1]
+
+                resolve(kdcSession)
+
+            } else {
+                reject({ error:"Response was not from KDC", address: `${client.remoteAddress}:${client.remotePort}`, data: data.toString() })
+            }
+
+
+        })
+
+    })
+
+}
+
 exports.sendMessage = sendMessage
+
+exports.getSessionKey = () => kdcSession
 
 function sendMessage(addr, port, data) {
 
@@ -81,4 +115,33 @@ function sendMessage(addr, port, data) {
             client.write(data)
         })
     }
+}
+
+function processMessage(data) {
+
+    try {
+        let splittedRequest = symmetric.decrypt(data.toString(), myKey).split('|');
+    } catch (e) {
+        throw "DECRYPTION FAILED"
+    }
+
+
+    let command = splittedRequest[0].toLowerCase()
+
+    switch (command) {
+
+        case 'talk':
+
+            let src = splittedRequest[1].toString()
+            let dst = splittedRequest[2].toString()
+            let msg = splittedRequest[3].toString()
+
+            console.log(src, dst, command, msg)
+
+        default:
+            throw "COMMAND NOT FOUND: USE SESSION|SRC|DST|PARAMS"
+
+    }
+
+
 }

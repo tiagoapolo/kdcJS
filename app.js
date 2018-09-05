@@ -13,8 +13,18 @@ bob.init(config.bob.address, config.bob.port, config.bob.key)
 
 // CMD|SRC|DST|PARAMS
 kdc.init(config.kdc.address, config.kdc.port, config.kdc.key, config)
-.then(() => {
-    // alice.sendMessage(config.kdc.address, config.kdc.port, `TALK|ALICE|BOB|${symmetric.nonce()}`)
-    // alice.sendMessage(config.kdc.address, config.kdc.port, `TALK|${config.alice.address}:${config.alice.port}|${config.bob.address}:${config.bob.port}|${symmetric.nonce()}`)
-    bob.sendMessage(config.kdc.address, config.kdc.port, `TALK|${config.bob.address}:${config.bob.port}|${config.alice.address}:${config.alice.port}|${symmetric.nonce()}`)
-})
+    .then(() => {
+
+        let initializeWithSession = [
+            alice.startSession(config.kdc.address,config.kdc.port, config.bob.address, config.bob.port),
+            bob.startSession(config.kdc.address,config.kdc.port, config.alice.address, config.alice.port)
+        ]
+
+        Promise.all(initializeWithSession)
+        .then(keys => {
+            bob.sendMessage(config.alice.address, config.alice.port, "nonses")
+        })
+        .catch(err => console.log(err))
+
+
+    })
