@@ -8,6 +8,7 @@ var kdcSession
 var myAddress
 var myPort
 var myKey
+var lastNonce = 0
 
 const symmetric = require('./symmetric')
 
@@ -18,14 +19,14 @@ exports.init = (address, port, key) => {
     myAddress = address
     myPort = port
 
-    client.on('data', function(data) {
-
-        console.log('Received: ' + data + '\nFROM: ' + client.remotePort)
-
-        client.destroy()
-
-
-    })
+    // client.on('data', function(data) {
+    //
+    //     console.log('Received: ' + data + '\nFROM: ' + client.remotePort)
+    //
+    //     client.destroy()
+    //
+    //
+    // })
 
     net.createServer((socket) => {
 
@@ -48,30 +49,22 @@ exports.sendMessage = sendMessage
 
 exports.startSession = (kdcAddress, kdcPort, dstAddress, dstPort) => {
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
 
-        sendMessage(kdcAddress, kdcPort, `SESSION|${myAddress}:${myPort}|${dstAddress}:${dstPort}`)
-        client.once('data', (data) => {
+        sendMessage(kdcAddress, kdcPort, `SESSION|${myAddress}:${myPort}|${dstAddress}:${dstPort}|${symmetric.nonce()}`)
+        .then(data => {
 
-            client.destroy();
+            kdcResponse = symmetric.decrypt(data.toString(), myKey).split('|')
+            kdcSession = kdcResponse[0]
 
-            if(client.remotePort.toString() === kdcPort){
+            console.log('BOB RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
 
-                kdcResponse = symmetric.decrypt(data.toString(), myKey).split('|')
-                kdcSession = kdcResponse[0]
+            // let destination = kdcResponse[1]
 
-                console.log('RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
-
-                // let destination = kdcResponse[1]
-
-                resolve(kdcSession)
-
-            } else {
-                reject({ error:"Response was not from KDC", address: `${client.remoteAddress}:${client.remotePort}`, data: data.toString() })
-            }
-
+            resolve({session: kdcSession, destination: kdcResponse[1]})
 
         })
+
 
     })
 
@@ -79,24 +72,51 @@ exports.startSession = (kdcAddress, kdcPort, dstAddress, dstPort) => {
 
 exports.getSessionKey = () => kdcSession
 
+exports.generateNonce = generateNonce
+
 function sendMessage(addr, port, data) {
 
     console.log('Sending Message =>', addr,':',port)
 
-    try {
-        client.write(data)
-    } catch (e) {
-        client.connect(port, addr, () => {
+    return new Promise((resolve) => {
+
+        try {
+
             client.write(data)
-        })
-    }
+
+
+            client.once('data', (data) => {
+
+                client.destroy();
+
+                resolve(data.toString())
+            })
+
+
+        } catch (e) {
+
+            client.connect(port, addr, () => {
+                client.write(data)
+
+
+                client.once('data', (data) => {
+
+                    client.destroy();
+
+                    resolve(data.toString())
+                })
+
+            })
+        }
+    })
 }
 
 function processMessage(data) {
 
+    let splittedRequest
 
     try {
-        let splittedRequest = symmetric.decrypt(data.toString(), myKey).split('|');
+        splittedRequest = symmetric.decrypt(data.toString(), kdcSession).split('|');
 
     } catch (e) {
         throw "DECRYPTION FAILED"
@@ -106,13 +126,16 @@ function processMessage(data) {
 
     switch (command) {
 
-        case 'talk':
+        case 'verify':
 
             let src = splittedRequest[1].toString()
             let dst = splittedRequest[2].toString()
             let msg = splittedRequest[3].toString()
 
             console.log(src, dst, command, msg)
+            console.log(`Checking...${verifyNonce(msg)}`)
+
+            return;
 
         default:
             throw "COMMAND NOT FOUND: USE SESSION|SRC|DST|PARAMS"
@@ -120,4 +143,15 @@ function processMessage(data) {
     }
 
 
+}
+
+function generateNonce() {
+
+    lastNonce = symmetric.nonce()
+
+    return lastNonce
+}
+
+function verifyNonce(hex) {
+    return (parseInt(hex, 16)-32).toString(16) == lastNonce
 }

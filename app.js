@@ -21,8 +21,19 @@ kdc.init(config.kdc.address, config.kdc.port, config.kdc.key, config)
         ]
 
         Promise.all(initializeWithSession)
-        .then(keys => {
-            bob.sendMessage(config.alice.address, config.alice.port, "nonses")
+        .then(sessions => {
+
+            let aliceData = sessions[0]
+            let bobData = sessions[1]
+
+            console.log(aliceData, bobData)
+
+            bob.sendMessage(config.alice.address, config.alice.port, symmetric.encrypt( `NONCE|${config.bob.address}:${config.bob.port}|${config.alice.address}:${config.alice.port}|${bob.generateNonce()}`, aliceData.session ) )
+                .then(response => {
+                    console.log(`RESPONSE! ${response}`)
+                })
+
+            // bob.sendMessage(config.alice.address, config.alice.port, "nonses")
         })
         .catch(err => console.log(err))
 

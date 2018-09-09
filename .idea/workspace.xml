@@ -6,7 +6,7 @@
       <change beforePath="$PROJECT_DIR$/alice.js" beforeDir="false" afterPath="$PROJECT_DIR$/alice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bob.js" beforeDir="false" afterPath="$PROJECT_DIR$/bob.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kdc.js" beforeDir="false" afterPath="$PROJECT_DIR$/kdc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symmetric.js" beforeDir="false" afterPath="$PROJECT_DIR$/symmetric.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,17 +21,18 @@
     <session id="-1076927323">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.13" value="1" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="105" value="1" />
           <entry key="181" value="1" />
           <entry key="js" value="3" />
           <entry key="md" value="1" />
@@ -40,21 +41,21 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="4" />
+          <entry key="JavaScript" value="5" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1794" />
+          <entry key="js" value="3135" />
           <entry key="md" value="6" />
           <entry key="txt" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="1794" />
+          <entry key="JavaScript" value="3135" />
           <entry key="PLAIN_TEXT" value="24" />
         </counts>
       </usages-collector>
@@ -68,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="76" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="76" />
+            <state relative-caret-position="259">
+              <caret line="30" column="202" selection-start-line="30" selection-start-column="202" selection-end-line="30" selection-end-column="202" />
             </state>
           </provider>
         </entry>
@@ -77,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/symmetric.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="189">
+              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -95,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kdc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="72" column="65" lean-forward="true" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="65" />
+            <state relative-caret-position="165">
+              <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -104,10 +105,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bob.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+            <state relative-caret-position="369">
+              <caret line="155" column="32" lean-forward="true" selection-start-line="155" selection-start-column="30" selection-end-line="155" selection-end-column="32" />
               <folding>
-                <marker date="1536180348000" expanded="true" signature="357:430" ph="..." />
+                <marker date="1536459685000" expanded="true" signature="384:460" ph="..." />
               </folding>
             </state>
           </provider>
@@ -116,8 +117,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alice.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="122" column="70" selection-start-line="122" selection-start-column="65" selection-end-line="122" selection-end-column="70" />
+            <state relative-caret-position="369">
+              <caret line="193" column="31" selection-start-line="193" selection-start-column="31" selection-end-line="193" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -153,12 +154,12 @@
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/config.json" />
-        <option value="$PROJECT_DIR$/symmetric.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/kdc.js" />
+        <option value="$PROJECT_DIR$/symmetric.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/alice.js" />
         <option value="$PROJECT_DIR$/bob.js" />
+        <option value="$PROJECT_DIR$/alice.js" />
       </list>
     </option>
   </component>
@@ -173,9 +174,10 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="833" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -243,7 +245,8 @@
       <workItem from="1535572275643" duration="269000" />
       <workItem from="1535572576330" duration="3229000" />
       <workItem from="1536150851863" duration="2713000" />
-      <workItem from="1536157926380" duration="7370000" />
+      <workItem from="1536157926380" duration="7416000" />
+      <workItem from="1536428281477" duration="8495000" />
     </task>
     <task id="LOCAL-00001" summary="Update readme">
       <created>1535575658519</created>
@@ -256,23 +259,23 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41651000" />
+    <option name="totallyTimeSpent" value="50192000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="833" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50179857" side_tool="true" weight="0.10625" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49820143" weight="0.10570825" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.13012049" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.12955466" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5003524" side_tool="true" weight="0.2672065" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49964765" visible="true" weight="0.26506025" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.39759037" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49964765" visible="true" weight="0.2968961" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.39676112" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -317,10 +320,52 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/kdc.js</url>
-          <line>57</line>
+          <url>file://$PROJECT_DIR$/alice.js</url>
+          <line>166</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/alice.js</url>
+          <line>160</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/bob.js</url>
+          <line>53</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/bob.js</url>
+          <line>89</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/bob.js</url>
+          <line>103</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/bob.js</url>
+          <line>55</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app.js</url>
+          <line>30</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/alice.js</url>
+          <line>173</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -356,39 +401,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/symmetric.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="189">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kdc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="72" column="65" lean-forward="true" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bob.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
-          <folding>
-            <marker date="1536180348000" expanded="true" signature="357:430" ph="..." />
-          </folding>
+        <state relative-caret-position="165">
+          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="76" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="76" />
+        <state relative-caret-position="259">
+          <caret line="30" column="202" selection-start-line="30" selection-start-column="202" selection-end-line="30" selection-end-column="202" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bob.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="155" column="32" lean-forward="true" selection-start-line="155" selection-start-column="30" selection-end-line="155" selection-end-column="32" />
+          <folding>
+            <marker date="1536459685000" expanded="true" signature="384:460" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/alice.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="122" column="70" selection-start-line="122" selection-start-column="65" selection-end-line="122" selection-end-column="70" />
+        <state relative-caret-position="369">
+          <caret line="193" column="31" selection-start-line="193" selection-start-column="31" selection-end-line="193" selection-end-column="31" />
         </state>
       </provider>
     </entry>

@@ -36,7 +36,7 @@ exports.decrypt = (encoded, key) => {
     return deciphered
 }
 
-exports.nonce = () => crypto.randomBytes(16).toString('hex')
+exports.nonce = () => crypto.randomBytes(6).toString('hex')
 
 
 
