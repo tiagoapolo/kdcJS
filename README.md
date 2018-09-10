@@ -7,10 +7,10 @@ Key distribuition center implementation for study purposes
 This implementation assumes that KDC has Alice's and Bob's keys and are stored in a `config.json` file. Also the ports and addresses are configured using the configuration file.
 
 Messages are sent using this **protocol** `CMD|SRC|DST|PARAMS` through **NodeJS Sockets**.
-- CMD: NONCE | TALK | VERIFY | SESSION
-- SRC: 192.168.0.1:8080
-- DST: 210.0.0.21:8081
-- PARAMS: Message itself.
+- **CMD:** NONCE | TALK | VERIFY | SESSION
+- **SRC:** 192.168.0.1:8080
+- **DST:** 210.0.0.21:8081
+- **PARAMS:** Message itself.
 
 1. KDC, Alice and Bob initaliaze its servers, Bob and Alice create its Client Sockets
 
