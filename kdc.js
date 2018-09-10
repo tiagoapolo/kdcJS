@@ -22,7 +22,7 @@ exports.init = (address, port, key, master) => {
             })
 
         }).listen(port, () => {
-            console.log('\nStarted KDC!', address+':'+port)
+            console.log('Started KDC!', address+':'+port,  '\n')
 
 
                 config = master;

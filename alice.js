@@ -16,44 +16,14 @@ exports.init = (address, port, key) => {
 
     myKey = key
 
-    // client.on('data', function(data) {
-    //
-    //
-    //     console.log('Received: ' + data + '\nFROM: ' + client.remotePort)
-    //
-    //     client.destroy()
-
-        // KDC
-        // if(client.remotePort === 8082){
-        //
-        //     kdcResponse = symmetric.decrypt(data.toString(), key).split('|')
-        //     kdcSession = kdcResponse[0]
-        //
-        //     console.log('RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
-        //
-        //     let destination = kdcResponse[1]
-        //     // sendMessage(destination.split(':')[0], destination.split(':')[1], kdcResponse[kdcResponse.length-1])
-        //
-        // // } else {
-        //     console.log('Received from an idiot: ', data.toString())
-        // // }
-
-
-    // })
-
-    // client.on('close', function() {
-    //
-    // });
 
     net.createServer((socket) => {
-
-        // socket.pipe(socket);
 
         server = socket
 
         socket.on('data', (data, from) => {
 
-            console.log('RECEBIL ', data.toString(), socket.localPort)
+            // console.log('RECEBIL ', data.toString(), socket.localPort)
 
             processMessage(data)
 
@@ -64,7 +34,7 @@ exports.init = (address, port, key) => {
         myAddress = address
         myPort = port
 
-        console.log('\nStarted Alice!', address+':'+port)
+        console.log('Started Alice!', address+':'+port,  '\n')
     })
 
 }
@@ -79,34 +49,11 @@ exports.startSession = (kdcAddress, kdcPort, dstAddress, dstPort) => {
             kdcResponse = symmetric.decrypt(data.toString(), myKey).split('|')
             kdcSession = kdcResponse[0]
 
-            console.log('ALICE RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
-
-            // let destination = kdcResponse[1]
+            console.log('ALICE RECEIVED KDC SESSION', kdcSession, '\n')
 
             resolve({session: kdcSession, destination: kdcResponse[1]})
 
         })
-        // client.once('data', (data) => {
-        //
-        //     client.destroy()
-        //
-        //     if(client.remotePort.toString() === kdcPort){
-        //
-        //         kdcResponse = symmetric.decrypt(data.toString(), myKey).split('|')
-        //         kdcSession = kdcResponse[0]
-        //
-        //         console.log('ALICE RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
-        //
-        //         // let destination = kdcResponse[1]
-        //
-        //         resolve({ session: kdcSession, destination: kdcResponse[1] })
-        //
-        //     } else {
-        //         reject({ error:"Response was not from KDC", address: `${client.remoteAddress}:${client.remotePort}`, data: data.toString() })
-        //     }
-        //
-        //
-        // })
 
     })
 
@@ -118,7 +65,7 @@ exports.getSessionKey = () => kdcSession
 
 function sendMessage(addr, port, data) {
 
-    console.log('Sending Message =>', addr,':',port)
+    console.log(`ALICE SENDING MESSAGE => ${addr}:${port}\nDATA: ${data}\n`)
 
     return new Promise((resolve) => {
 
@@ -174,9 +121,9 @@ function processMessage(data) {
             let dst = splittedRequest[2].toString()
             let msg = splittedRequest[3].toString()
 
-            console.log(src, dst, command, msg)
+            console.log(`ALICE RECEIVED NONCE ${msg}\n`)
 
-            console.log('HANDLER: ',handleNonce(msg))
+            // console.log('HANDLER: ',handleNonce(msg))
             sendMessage(src.split(':')[0], src.split(':')[1], symmetric.encrypt(`VERIFY|${dst.split(':')[0]}:${dst.split(':')[1]}|${src.split(':')[0]}:${src.split(':')[1]}|${handleNonce(msg)}`, kdcSession))
                 .then(x => console.log('SENDING X', x))
 
@@ -191,5 +138,8 @@ function processMessage(data) {
 }
 
 function handleNonce(hex){
+
+    console.log('NONCE HAS BEEN MODIFIED\n')
+
     return (parseInt(hex, 16)+32).toString(16)
 }

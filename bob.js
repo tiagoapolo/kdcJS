@@ -19,29 +19,17 @@ exports.init = (address, port, key) => {
     myAddress = address
     myPort = port
 
-    // client.on('data', function(data) {
-    //
-    //     console.log('Received: ' + data + '\nFROM: ' + client.remotePort)
-    //
-    //     client.destroy()
-    //
-    //
-    // })
 
     net.createServer((socket) => {
 
-        // socket.pipe(socket);
-
         socket.on('data', (data, from) => {
 
-            console.log('DATA BOB!', data.toString());
-            // socket.write('MORRE DIABO! BOB')
             processMessage(data.toString())
 
         })
 
     }).listen(port, () => {
-        console.log('\nStarted Bob!', address+':'+port)
+        console.log('Started Bob!', address+':'+port,  '\n')
     })
 }
 
@@ -57,9 +45,8 @@ exports.startSession = (kdcAddress, kdcPort, dstAddress, dstPort) => {
             kdcResponse = symmetric.decrypt(data.toString(), myKey).split('|')
             kdcSession = kdcResponse[0]
 
-            console.log('BOB RECEIVED FROM KDC', kdcSession, '\n', kdcResponse)
+            console.log('BOB RECEIVED KDC SESSION', kdcSession, '\n')
 
-            // let destination = kdcResponse[1]
 
             resolve({session: kdcSession, destination: kdcResponse[1]})
 
@@ -76,7 +63,7 @@ exports.generateNonce = generateNonce
 
 function sendMessage(addr, port, data) {
 
-    console.log('Sending Message =>', addr,':',port)
+    console.log(`BOB SENDING MESSAGE => ${addr}:${port}\nDATA: ${data}\n`)
 
     return new Promise((resolve) => {
 
@@ -132,8 +119,8 @@ function processMessage(data) {
             let dst = splittedRequest[2].toString()
             let msg = splittedRequest[3].toString()
 
-            console.log(src, dst, command, msg)
-            console.log(`Checking...${verifyNonce(msg)}`)
+            console.log('...BOB VERIFYING NONCE...')
+            console.log(`VERIFICATION RESULT: ${verifyNonce(msg)}`)
 
             return;
 

@@ -6,6 +6,8 @@ const kdc = require('./kdc')
 const bob = require('./bob')
 const symmetric = require('./symmetric')
 
+console.log('')
+
 
 alice.init(config.alice.address, config.alice.port, config.alice.key)
 bob.init(config.bob.address, config.bob.port, config.bob.key)
@@ -25,8 +27,6 @@ kdc.init(config.kdc.address, config.kdc.port, config.kdc.key, config)
 
             let aliceData = sessions[0]
             let bobData = sessions[1]
-
-            console.log(aliceData, bobData)
 
             bob.sendMessage(config.alice.address, config.alice.port, symmetric.encrypt( `NONCE|${config.bob.address}:${config.bob.port}|${config.alice.address}:${config.alice.port}|${bob.generateNonce()}`, aliceData.session ) )
                 .then(response => {
